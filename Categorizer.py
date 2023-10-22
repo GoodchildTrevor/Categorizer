@@ -27,10 +27,12 @@ with open('LSTM_tokenizer.pkl', 'rb') as f:
 
 loaded_model = load_model("LSTM_model.h5", custom_objects={'Addons>F1Score': tfa.metrics.F1Score})
 
+
 def preprocess_sentences(sentences, tokenizer, max_length):
     sequences = tokenizer.texts_to_sequences(sentences)
     padded_sequences = pad_sequences(sequences, maxlen=max_length, padding='post', truncating='post')
     return padded_sequences
+
 
 def tokenize_text(value):
 
@@ -56,6 +58,7 @@ def tokenize_text(value):
    padded_sequences = preprocess_sentences(all_sentence, tokenizer, 29)
 
    return padded_sequences
+
 
 st.title("Анализатор категорий продуктов")
 
